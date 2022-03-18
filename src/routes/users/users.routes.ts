@@ -7,4 +7,4 @@ export const usersRouter:Router = Router();
 
 usersRouter.post('/signUp', validateResource(createUserSchema), userSignUp)
 usersRouter.post('/login', validateResource(loginUserSchema), userLogin)
-usersRouter.get('/', getUsers);
+// usersRouter.get('/', getUsers);

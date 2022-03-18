@@ -28,6 +28,12 @@ model Order {
   user   User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
+  status OrderStatus
+}
+
+enum OrderStatus{
+  Placed
+  Cancelled
 }
 
 model User {

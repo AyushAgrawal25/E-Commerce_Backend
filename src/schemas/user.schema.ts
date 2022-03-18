@@ -1,7 +1,7 @@
 import {TypeOf, z} from 'zod';
 
 export const userSchema=z.object({
-    id: z.string().nullish().optional(),
+    id: z.number(),
     email: z.string({
         required_error: "Email is required."
     }),
@@ -28,5 +28,12 @@ export const loginUserSchema=z.object({
     })
 });
 
+export const userAuthSessionSchema=userSchema.pick({
+    id: true,
+    email: true
+});
+
+export type UserModel=z.TypeOf<typeof userSchema>;
 export type CreateUserInput=z.TypeOf<typeof createUserSchema>;
 export type UserLoginInput=z.TypeOf<typeof loginUserSchema>;
+export type UserAuthSession=z.TypeOf<typeof userAuthSessionSchema>;
