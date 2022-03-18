@@ -21,4 +21,12 @@ export const createUserSchema=z.object({
     })
 });
 
+export const loginUserSchema=z.object({
+    body: userSchema.pick({
+        email: true,
+        password: true
+    })
+});
+
 export type CreateUserInput=z.TypeOf<typeof createUserSchema>;
+export type UserLoginInput=z.TypeOf<typeof loginUserSchema>;
