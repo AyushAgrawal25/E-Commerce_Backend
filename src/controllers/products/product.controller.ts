@@ -27,3 +27,18 @@ export async function searchProducts(req: Request<{}, {}, SearchProductInput['bo
         })
     }
 }
+
+export async function getProducts(req: Request<{}, {}, SearchProductInput['body']>, res: Response<{}, Locals<UserAuthSession> >) {
+    try {
+        const products=await prisma.product.findMany();
+        res.status(200).json({
+            status:"Success",
+            data: products
+        });
+    } catch (error) {
+        res.status(500).json({
+            status:"Failed",
+            error: error
+        })
+    }
+}
