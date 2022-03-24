@@ -1,8 +1,11 @@
 import express, { ErrorRequestHandler, NextFunction, Request, Response, Router } from "express";
+import cors from 'cors'
 
 const initializeExpress=async()=>{
     try {
         const app=express();
+
+        app.use(cors());
         app.use(express.json());
 
         const router=require('./routes/routes').default;
