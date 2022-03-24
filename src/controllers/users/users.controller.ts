@@ -19,10 +19,15 @@ export const userSignUp=async(req: Request<{}, {}, CreateUserInput['body']>, res
             },
         });
 
-        res.status(201).json({
-            status:"sucess",
+        const authToken=generateToken(user.id, user.email);
+        const respData:any={
             message:"User Created Successfully...!",
             data: user
+        };
+        respData[AUTHORIZATION_TOKEN]=authToken;
+        res.status(201).json({
+            status:"sucess",
+            ...respData
         });
     } catch (error) {
         console.log(error)
